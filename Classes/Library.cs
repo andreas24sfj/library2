@@ -1,29 +1,35 @@
+using System.Reflection.Metadata.Ecma335;
+
 class Library
 {
   // Data felt
   private List<Book> books;
   private List<Book> lbooks;
-
+  private List<Customer> customers;
   // Konstruktøren
   public Library()
   {
     books = new List<Book>();
     lbooks = new List<Book>();
+    customers = new List<Customer>();
   }
 
   // Metoder, ting vi kan gjøre med objektet
-  public void AddNewBook(Book newBook)
+  public void AddNewBook(Book newBook)  // legg til bøker i biblioteket
   {
     books.Add(newBook);
     lbooks.Remove(newBook);
-    books.Sort();
   }
 
   public void AddToLended(Book returnBook)  // legg til i lånte bøker
   {
     lbooks.Add(returnBook);
     books.Remove(returnBook);
-    lbooks.Sort();
+  }
+
+  public void AddCustomer(Customer newCustomer)
+  {
+    customers.Add(newCustomer);
   }
 
   // Lister alle bøkene som er utilgjengelige i library
@@ -36,8 +42,12 @@ class Library
   {
     return books;
   }
-
-  public Book? LendBook(string title)
+  // liste alle som har registrert seg:
+  public List<Customer> ListCustomers()
+  {
+    return customers;
+  }
+  public Book? LendBook(string title) //låne bøker
   {
     Book? book = books.Find((book) =>
     {
@@ -54,7 +64,7 @@ class Library
     return book;
   }
 
-  public Book? ReturnBook(string returntitle)
+  public Book? ReturnBook(string returntitle) // levere tilbake bøker
   {
     Book? lbook = lbooks.Find((lbook) =>
     {

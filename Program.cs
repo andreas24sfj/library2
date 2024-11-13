@@ -40,13 +40,21 @@ bool runProgram = true;
 while (runProgram)
 {
   // les av bruker input
+  Console.WriteLine("What is your first name?");
+  string? firstName = Console.ReadLine();
+  Console.WriteLine("What is your last name?");
+  string? lastName = Console.ReadLine();
+
+  Customer customer = new Customer(firstName, lastName);
+  library.AddCustomer(customer);
+  Console.WriteLine("Welcome to our cozy little library " + firstName + " " + lastName + "!");
+
   Console.WriteLine("---------------------------------------------------------");
   Console.WriteLine("Do you want to (list) available books, (list unavailable) books, (lend) or (return)?");
   Console.WriteLine("---------------------------------------------------------");
   string? userInput = Console.ReadLine();
 
   // Vi må finne hva bruker skrev inn
-
   // List ut tilgjengelige bøker
   if (userInput == "list")
   {
@@ -67,7 +75,6 @@ while (runProgram)
     Console.WriteLine("Here are books that are unavailable(already borrowed):");
     Console.WriteLine("---------------------------------------------------------");
     List<Book> unavailableBooks = library.ListUnavailableBooks();
-    unavailableBooks.Sort();
     foreach (var book in unavailableBooks)
     {
       Console.WriteLine(book.Title + "(" + book.FirstPublished.Year + ")" + "  by  " + book.Author);
@@ -90,6 +97,18 @@ while (runProgram)
     if (book == null)
     {
       Console.WriteLine("No book with title found: " + wantedBookTitle);
+    }
+    else if (userInput == "list customers")
+    {
+      Console.WriteLine("---------------------------------------------------------");
+      Console.WriteLine("Here are a list of customers:");
+      Console.WriteLine("---------------------------------------------------------");
+      List<Customer> customerList = library.ListCustomers();
+      customerList.Sort();
+      foreach (var customer in customerList)
+      {
+        Console.WriteLine(customer.Title + "(" + customer.FirstPublished.Year + ")" + "  by  " + customer.Author);
+      }
     }
     else
     {

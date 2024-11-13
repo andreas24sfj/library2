@@ -54,24 +54,24 @@ while (runProgram)
 
     foreach (var book in availableBooks)
     {
-      Console.WriteLine(book.Title +"("+book.FirstPublished.Year+")"+ "  by  " + book.Author);
+      Console.WriteLine(book.Title + "(" + book.FirstPublished.Year + ")" + "  by  " + book.Author);
     }
   }
   //list ut utilgjengelige bøker:
   else if (userInput == "list unavailable")
   {
-     Console.WriteLine("Here are books that are unavailable(already borrowed):");
+    Console.WriteLine("Here are books that are unavailable(already borrowed):");
     List<Book> unavailableBooks = library.ListUnavailableBooks();
 
     foreach (var book in unavailableBooks)
     {
-      Console.WriteLine(book.Title +"("+book.FirstPublished.Year+")"+ "  by  " + book.Author);
-    } 
+      Console.WriteLine(book.Title + "(" + book.FirstPublished.Year + ")" + "  by  " + book.Author);
+    }
   }
   // For å låne en bok (lend)
   else if (userInput == "lend")
   {
-    Console.WriteLine("What is the title of the book you want to lend?");
+    Console.WriteLine("What is the title of the book you want to lend(remember case sensitivity?");
     string? wantedBookTitle = Console.ReadLine();
 
     if (wantedBookTitle == null)
@@ -97,7 +97,7 @@ while (runProgram)
   {
     Console.WriteLine("Which book would you like to return?");
     string? returnBookTitle = Console.ReadLine();
-     if (returnBookTitle == null)
+    if (returnBookTitle == null)
     {
       continue; // Start hoved løkken på nytt
     }
@@ -112,7 +112,7 @@ while (runProgram)
       Console.WriteLine("Returning book to library: " + lbook.Title);
       library.AddNewBook(lbook);
     }
-  
+
 
   }
   // For å avslutte (exit)

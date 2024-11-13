@@ -17,7 +17,7 @@ class Library
     books.Add(newBook);
     lbooks.Remove(newBook);
   }
-  
+
   public void AddToLended(Book returnBook)  // legg til i lånte bøker
   {
     lbooks.Add(returnBook);
@@ -67,4 +67,5 @@ class Library
     });
 
     return lbook;
-}}
+  }
+}

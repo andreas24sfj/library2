@@ -41,7 +41,7 @@ while (runProgram)
 {
   // les av bruker input
   Console.WriteLine("---------------------------------------------------------");
-  Console.WriteLine("Do you want to (list) available books, (lend) or (return)?");
+  Console.WriteLine("Do you want to (list) available books, (list unavailable) books, (lend) or (return)?");
   string? userInput = Console.ReadLine();
 
   // Vi må finne hva bruker skrev inn
@@ -49,7 +49,7 @@ while (runProgram)
   // List ut tilgjengelige bøker
   if (userInput == "list")
   {
-    Console.WriteLine("Here are available books:");
+    Console.WriteLine("Here are the list of available books:");
     List<Book> availableBooks = library.ListAvailableBooks();
 
     foreach (var book in availableBooks)
@@ -57,10 +57,21 @@ while (runProgram)
       Console.WriteLine(book.Title +"("+book.FirstPublished.Year+")"+ "  by  " + book.Author);
     }
   }
+  //list ut utilgjengelige bøker:
+  else if (userInput == "list unavailable")
+  {
+     Console.WriteLine("Here are books that are unavailable(already borrowed):");
+    List<Book> unavailableBooks = library.ListUnavailableBooks();
+
+    foreach (var book in unavailableBooks)
+    {
+      Console.WriteLine(book.Title +"("+book.FirstPublished.Year+")"+ "  by  " + book.Author);
+    } 
+  }
   // For å låne en bok (lend)
   else if (userInput == "lend")
   {
-    Console.WriteLine("What is the title of the book?");
+    Console.WriteLine("What is the title of the book you want to lend?");
     string? wantedBookTitle = Console.ReadLine();
 
     if (wantedBookTitle == null)
@@ -78,6 +89,7 @@ while (runProgram)
     else
     {
       Console.WriteLine("Lending book: " + book.Title);
+      library.AddToLended(book);
     }
   }
   // For å lever tilbake en bok (return)
@@ -85,6 +97,23 @@ while (runProgram)
   {
     Console.WriteLine("Which book would you like to return?");
     string? returnBookTitle = Console.ReadLine();
+     if (returnBookTitle == null)
+    {
+      continue; // Start hoved løkken på nytt
+    }
+
+    Book? lbook = library.ReturnBook(returnBookTitle);
+    if (lbook == null)
+    {
+      Console.WriteLine("No book with title found: " + returnBookTitle);
+    }
+    else
+    {
+      Console.WriteLine("Returning book to library: " + lbook.Title);
+      library.AddNewBook(lbook);
+    }
+  
+
   }
   // For å avslutte (exit)
   else if (userInput == "exit")

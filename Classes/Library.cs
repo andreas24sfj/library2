@@ -16,12 +16,14 @@ class Library
   {
     books.Add(newBook);
     lbooks.Remove(newBook);
+    books.Sort();
   }
 
   public void AddToLended(Book returnBook)  // legg til i lånte bøker
   {
     lbooks.Add(returnBook);
     books.Remove(returnBook);
+    lbooks.Sort();
   }
 
   // Lister alle bøkene som er utilgjengelige i library

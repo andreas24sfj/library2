@@ -42,6 +42,7 @@ while (runProgram)
   // les av bruker input
   Console.WriteLine("---------------------------------------------------------");
   Console.WriteLine("Do you want to (list) available books, (list unavailable) books, (lend) or (return)?");
+  Console.WriteLine("---------------------------------------------------------");
   string? userInput = Console.ReadLine();
 
   // Vi må finne hva bruker skrev inn
@@ -49,7 +50,9 @@ while (runProgram)
   // List ut tilgjengelige bøker
   if (userInput == "list")
   {
+    Console.WriteLine("---------------------------------------------------------");
     Console.WriteLine("Here are the list of available books:");
+    Console.WriteLine("---------------------------------------------------------");
     List<Book> availableBooks = library.ListAvailableBooks();
 
     foreach (var book in availableBooks)
@@ -60,9 +63,11 @@ while (runProgram)
   //list ut utilgjengelige bøker:
   else if (userInput == "list unavailable")
   {
+    Console.WriteLine("---------------------------------------------------------");
     Console.WriteLine("Here are books that are unavailable(already borrowed):");
+    Console.WriteLine("---------------------------------------------------------");
     List<Book> unavailableBooks = library.ListUnavailableBooks();
-
+    unavailableBooks.Sort();
     foreach (var book in unavailableBooks)
     {
       Console.WriteLine(book.Title + "(" + book.FirstPublished.Year + ")" + "  by  " + book.Author);
@@ -95,6 +100,7 @@ while (runProgram)
   // For å lever tilbake en bok (return)
   else if (userInput == "return")
   {
+    Console.WriteLine("Returning a book.");
     Console.WriteLine("Which book would you like to return?");
     string? returnBookTitle = Console.ReadLine();
     if (returnBookTitle == null)
@@ -105,7 +111,7 @@ while (runProgram)
     Book? lbook = library.ReturnBook(returnBookTitle);
     if (lbook == null)
     {
-      Console.WriteLine("No book with title found: " + returnBookTitle);
+      Console.WriteLine("No book with that title found, or it is already in the library: " + returnBookTitle);
     }
     else
     {

@@ -40,15 +40,6 @@ bool runProgram = true;
 while (runProgram)
 {
   // les av bruker input
-  Console.WriteLine("What is your first name?");
-  string? firstName = Console.ReadLine();
-  Console.WriteLine("What is your last name?");
-  string? lastName = Console.ReadLine();
-
-  Customer customer = new Customer(firstName, lastName);
-  library.AddCustomer(customer);
-  Console.WriteLine("Welcome to our cozy little library " + firstName + " " + lastName + "!");
-
   Console.WriteLine("---------------------------------------------------------");
   Console.WriteLine("Do you want to (list) available books, (list unavailable) books, (lend) or (return)?");
   Console.WriteLine("---------------------------------------------------------");
@@ -97,7 +88,7 @@ while (runProgram)
     if (book == null)
     {
       Console.WriteLine("No book with title found: " + wantedBookTitle);
-    }
+    }/*
     else if (userInput == "list customers")
     {
       Console.WriteLine("---------------------------------------------------------");
@@ -109,7 +100,7 @@ while (runProgram)
       {
         Console.WriteLine(customer.Title + "(" + customer.FirstPublished.Year + ")" + "  by  " + customer.Author);
       }
-    }
+    }*/
     else
     {
       Console.WriteLine("Lending book: " + book.Title);

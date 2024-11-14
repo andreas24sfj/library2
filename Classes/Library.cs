@@ -5,13 +5,13 @@ class Library
   // Data felt
   private List<Book> books;
   private List<Book> lbooks;
-  private List<Customer> customers;
+  //private List<Customer> customers;
   // Konstruktøren
   public Library()
   {
     books = new List<Book>();
     lbooks = new List<Book>();
-    customers = new List<Customer>();
+    //customers = new List<Customer>();
   }
 
   // Metoder, ting vi kan gjøre med objektet
@@ -27,10 +27,10 @@ class Library
     books.Remove(returnBook);
   }
 
-  public void AddCustomer(Customer newCustomer)
+  /*public void AddCustomer(Customer newCustomer)
   {
     customers.Add(newCustomer);
-  }
+  }*/
 
   // Lister alle bøkene som er utilgjengelige i library
   public List<Book> ListUnavailableBooks()
@@ -43,10 +43,10 @@ class Library
     return books;
   }
   // liste alle som har registrert seg:
-  public List<Customer> ListCustomers()
+  /*public List<Customer> ListCustomers()
   {
     return customers;
-  }
+  }*/
   public Book? LendBook(string title) //låne bøker
   {
     Book? book = books.Find((book) =>
